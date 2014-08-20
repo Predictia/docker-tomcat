@@ -9,6 +9,10 @@ RUN apt-get update && \
 ENV TOMCAT_MAJOR_VERSION 8
 ENV TOMCAT_MINOR_VERSION 8.0.9
 ENV CATALINA_HOME /tomcat
+ENV TOMCAT_OPTS_PERMSIZE 384
+ENV TOMCAT_OPTS_MAXPERMSIZE 384
+ENV TOMCAT_OPTS_XMS 384
+ENV TOMCAT_OPTS_XMX 1024
 
 # INSTALL TOMCAT
 RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
@@ -18,6 +22,7 @@ RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION
   mv apache-tomcat* tomcat
 
 ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh
+ADD config_tomcat.sh /config_tomcat.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
