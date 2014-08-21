@@ -26,5 +26,7 @@ ADD config_tomcat.sh /config_tomcat.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
+VOLUME  ["/tomcat/webapps"]
+
 EXPOSE 8080 8009
 CMD ["/run.sh"]
