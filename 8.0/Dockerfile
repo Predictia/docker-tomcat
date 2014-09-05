@@ -1,13 +1,13 @@
 FROM tifayuki/java:7
 MAINTAINER Feng Honglin <hfeng@tutum.co>
 
-ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
-  apt-get install -yq wget pwgen && \
-  rm -rf /var/lib/apt/lists/*
+    apt-get install -yq --no-install-recommends wget pwgen ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV TOMCAT_MAJOR_VERSION 8
-ENV TOMCAT_MINOR_VERSION 8.0.9
+ENV TOMCAT_MINOR_VERSION 8.0.11
 ENV CATALINA_HOME /tomcat
 ENV TOMCAT_OPTS_PERMSIZE 384
 ENV TOMCAT_OPTS_MAXPERMSIZE 384
